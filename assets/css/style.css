@@ -1,0 +1,98 @@
+.dataTables_wrapper select {
+    appearance: auto !important;
+    -webkit-appearance: auto !important;
+    background: none !important;
+}
+
+.flex-container-ETD {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-6-responsive {
+    width: 45%;
+    padding: 20px;
+}
+
+@media (max-width: 767px) {
+    .col-6-responsive {
+        width: 100%;
+    }
+}
+
+.form-ETD input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.form-ETD textarea {
+    width: 100%;
+    margin-bottom: 0.5rem;
+
+}
+
+.form-upload-ETD {
+    width: 100%;
+    text-align: center;
+}
+
+.drop-container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    padding: 20px;
+    margin-bottom: 0.5rem;
+    border-radius: 10px;
+    border: 2px dashed #555;
+    color: #444;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.form-upload-ETD .drop-container:hover,
+.form-upload-ETD .drop-container.drag-active {
+    background: #eee;
+    border-color: #111;
+}
+
+.form-upload-ETD .drop-container:hover .drop-title,
+.form-upload-ETD .drop-container.drag-active .drop-title {
+    color: #222;
+}
+
+.form-upload-ETD .drop-title {
+    color: #444;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+}
+
+.form-upload-ETD input[type=file] {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 5px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #555;
+}
+
+.form-upload-ETD input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #cc9a03;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+.form-upload-ETD input[type=file]::file-selector-button:hover {
+    background: #cc9a03;
+}
