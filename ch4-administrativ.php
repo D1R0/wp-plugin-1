@@ -9,23 +9,16 @@ if (!defined('WPINC')) {
     die;
 }
 
-function ch4_add_author_link($links, $file)
-{
-    if (plugin_basename(__FILE__) === $file) {
-        $author_link = 'By <a href="https://www.eltand.com" target="_blank">Eltand</a>';
-        $links[] = $author_link;
-    }
-    return $links;
-}
 add_filter('plugin_row_meta', 'ch4_add_author_link', 10, 2);
 
 function ch4_plugin_enqueue_styles_scripts()
 {
     wp_enqueue_style('ch4-admin-style', plugins_url('assets/css/style.css', __FILE__));
     wp_enqueue_script('ch4-admin-script', plugins_url('assets/js/script.js', __FILE__), array('jquery'), null, true);
-    wp_enqueue_style('datatables', 'http://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css');
+
+    wp_enqueue_style('datatables', 'https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css');
     wp_enqueue_script('jquery');
-    wp_enqueue_script('datatables', 'http://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js', array('jquery'), null, true);
+    wp_enqueue_script('datatables', 'https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js', array('jquery'), null, true);
 }
 register_activation_hook(__FILE__, 'ch4_plugin_activate');
 
