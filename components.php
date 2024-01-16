@@ -9,6 +9,7 @@ function ch4_plugin_display_project_details()
             echo '<h3>Detailii Proiect</h3>';
             echo '<p>Serie: ' . esc_html($project_details->series) . '</p>';
             echo '<p>Nume: ' . esc_html($project_details->name) . '</p>';
+            echo '<p>Status: ' . esc_html($project_details->status) . '</p>';
             echo '<p>Detalii: ' . esc_html($project_details->details) . '</p>';
         } else {
             echo '<p>Proiectul cu seria ' . esc_html($project_series) . ' nu a fost gasit</p>';

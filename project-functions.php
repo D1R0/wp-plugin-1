@@ -148,7 +148,7 @@ function get_project_details_by_series($project_series)
 
     $table_name = $wpdb->prefix . 'ch4_projects'; // Replace 'your_projects_table' with your actual table name
 
-    $project_details = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE series = %d", $project_series));
+    $project_details = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE series = %s", $project_series));
 
     return $project_details;
 }
