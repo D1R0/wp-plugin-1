@@ -3,6 +3,8 @@
 Plugin Name: CH4.ro
 Description: Eltand, your online partner.
 Version: 1.0
+Author: Eltand
+Author URI: https://www.eltand.com/
 */
 
 if (!defined('WPINC')) {
