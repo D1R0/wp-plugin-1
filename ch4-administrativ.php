@@ -4,15 +4,12 @@ Plugin Name: CH4.ro
 Description: Eltand, your online partner.
 Version: 1.0
 Author: Eltand
-Author URI: https://www.eltand.com/
+Author URL: https://www.eltand.com/
 */
 
 if (!defined('WPINC')) {
     die;
 }
-
-add_filter('plugin_row_meta', 'ch4_add_author_link', 10, 2);
-
 function ch4_plugin_enqueue_styles_scripts()
 {
     wp_enqueue_style('ch4-admin-style', plugins_url('assets/css/style.css', __FILE__));
