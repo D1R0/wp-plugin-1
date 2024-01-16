@@ -14,9 +14,9 @@ function updateDatabase()
 
     if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
         $sql = "CREATE TABLE $table_name (
-            series VARCHAR(255) NOT NULL,
-            name VARCHAR(255) NOT NULL,
-            status VARCHAR(255),
+            series VARCHAR(191) NOT NULL,
+            name VARCHAR(191) NOT NULL,
+            status VARCHAR(191),
             details LONGTEXT,
             PRIMARY KEY (series)
         ) $charset_collate;";
