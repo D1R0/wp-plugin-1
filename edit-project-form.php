@@ -15,7 +15,7 @@ function ch4_plugin_activate()
         PRIMARY KEY (series)
     ) $charset_collate;";
     }
-
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta($sql);
+    $result = $wpdb->get_results($sql);
+    // require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    // dbDelta($sql);
 }
