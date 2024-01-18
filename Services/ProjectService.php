@@ -60,15 +60,7 @@ class ProjectService
 
             foreach ($csv_data as $row) {
                 if ($row[0] != "") {
-                    $wpdb->insert(
-                        $table_name,
-                        array(
-                            'series' => $row[0],
-                            'name' => $row[1] ?? "",
-                            'status' => $row[2] ?? "",
-                            'details' => $row[3] ?? "",
-                        )
-                    );
+                    $this->insertProject($wpdb, $table_name, $row);
                 }
             }
         }
@@ -92,21 +84,24 @@ class ProjectService
                     $data[] = $cell->getValue();
                 }
                 if ($data[0] != "") {
-                    $wpdb->insert(
-                        $table_name,
-                        array(
-                            'series' => $data[0],
-                            'name' => $data[1] ?? "",
-                            'status' => $data[2] ?? "",
-                            'details' => $data[3] ?? "",
-                        )
-                    );
+                    $this->insertProject($wpdb, $table_name, $data);
                 }
             }
         }
     }
 
-
+    private function insertProject($wpdb, $table_name, $data)
+    {
+        $wpdb->insert(
+            $table_name,
+            array(
+                'series' => $this->sanitize_input($data[0]),
+                'name' => $this->sanitize_input($data[1]) ?? "",
+                'status' => $this->sanitize_input($data[2]) ?? "",
+                'details' => $data[3] ?? "",
+            )
+        );
+    }
     function handleFormProject()
     {
         global $wpdb;
