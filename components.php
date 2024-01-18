@@ -41,7 +41,7 @@ function ch4_plugin_edit_project_form()
     if ($project_details) {
     ?>
 <h3>Editeaza Proiect</h3>
-<div class="col-6-responsive">
+<div class="col">
     <form method="post" class="form-ETD">
         <input type="hidden" name="project_series" value="<?php echo esc_attr($project_details->series); ?>"
             maxlength="191">
@@ -51,7 +51,7 @@ function ch4_plugin_edit_project_form()
         <input type="text" name="project_status" value="<?php echo esc_attr($project_details->status); ?>"
             maxlength="191">
         <label for="project_details">Descrierea proiectului:</label>
-        <textarea name="project_details" id="" cols="30" rows="10">
+        <textarea name="project_details" id="" cols="30" rows="10" class="descFieldETD">
     <?php echo esc_attr($project_details->details); ?>
     </textarea>
         <input type="submit" name="update_project" value="Update" class="button button-primary">

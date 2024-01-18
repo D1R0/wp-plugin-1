@@ -17,7 +17,7 @@ class ProjectService
         $project_series = $this->sanitize_input(sanitize_text_field($_POST['project_series']));
         $project_name = $this->sanitize_input(sanitize_text_field($_POST['project_name']));
         $project_status = $this->sanitize_input(sanitize_text_field($_POST['project_status']));
-        $project_details = $this->sanitize_input(sanitize_text_field($_POST['project_details']));
+        $project_details = $_POST['project_details'];
 
         $table_name = $wpdb->prefix . 'ch4_projects';
 

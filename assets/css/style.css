@@ -14,6 +14,10 @@
     padding: 20px;
 }
 
+.col {
+    padding-right: 20px;
+}
+
 @media (max-width: 767px) {
     .col-6-responsive {
         width: 100%;

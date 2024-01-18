@@ -43,4 +43,10 @@ jQuery(document).ready(function () {
         })
     }
 
+    tinymce.init({
+        selector: '.descFieldETD',
+        plugins: "image autolink link lists media table",
+        toolbar: "link addcomment showcomments casechange code image table ",
+
+    });
 })

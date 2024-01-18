@@ -27,6 +27,7 @@ function ch4_plugin_enqueue_styles_scripts()
     wp_enqueue_style('datatables', 'https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css');
     wp_enqueue_script('jquery');
     wp_enqueue_script('datatables', 'https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js', array('jquery'), null, true);
+    wp_enqueue_script('tinymce', 'https://cdn.tiny.cloud/1/3xqj4xk3okty09pnhv9l2343epxaiadbfe8nwkkuwjekeh1y/tinymce/6/tinymce.min.js', array('jquery'), null, true);
 }
 
 function ch4_plugin_admin_menu()
