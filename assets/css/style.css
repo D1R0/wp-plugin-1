@@ -31,6 +31,11 @@
 
 }
 
+.form-ETD input[type="submit"] {
+    width: auto !important;
+    margin: auto;
+}
+
 .form-upload-ETD {
     width: 100%;
     text-align: center;

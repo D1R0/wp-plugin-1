@@ -1,5 +1,4 @@
 jQuery(document).ready(function () {
-    let nonce = wpApiSettings.nonce;
     jQuery(".deleteProject").on("click", function () {
         let id = jQuery(this).data("id");
         let url = wpApiSettings.root + 'ch4/v1/delete-project/' + id;
@@ -7,10 +6,11 @@ jQuery(document).ready(function () {
             url: url,
             method: 'DELETE',
             beforeSend: function (xhr) {
-                xhr.setRequestHeader('X-WP-Nonce', nonce);
+                xhr.setRequestHeader('X-WP-Nonce', wpApiSettings.nonce);
             },
         })
             .done(function (data) {
+                console.log(data)
                 location.reload();
             })
             .fail(function (jqXHR, textStatus, error) {
@@ -18,7 +18,6 @@ jQuery(document).ready(function () {
             });
     })
     if (
-
         jQuery(".form-upload-ETD").length
     ) {
 

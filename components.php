@@ -4,13 +4,13 @@ function ch4_plugin_display_project_details()
 {
     if (isset($_POST['project_series']) && !empty($_POST['project_series'])) {
         $project_series = sanitize_text_field($_POST['project_series']);
-        $project_details = get_project_details_by_series($project_series);
+        $project_details = (new ProjectService())->get_project_details_by_series($project_series);
         if ($project_details) {
-            echo '<h3>Detailii Proiect</h3>';
-            echo '<p>Serie: ' . esc_html($project_details->series) . '</p>';
-            echo '<p>Nume: ' . esc_html($project_details->name) . '</p>';
-            echo '<p>Status: ' . esc_html($project_details->status) . '</p>';
-            echo '<p>Detalii: ' . esc_html($project_details->details) . '</p>';
+            echo '<h4>Detalii Proiect</h4>';
+            echo '<p><b>Serie</b>: ' . esc_html($project_details->series) . '</p>';
+            echo '<p><b>Nume</b>: ' . esc_html($project_details->name) . '</p>';
+            echo '<p><b>Status</b>: ' . esc_html($project_details->status) . '</p>';
+            echo '<p><b>Detalii</b>: ' . esc_html($project_details->details) . '</p>';
         } else {
             echo '<p>Proiectul cu seria ' . esc_html($project_series) . ' nu a fost gasit</p>';
         }
@@ -20,23 +20,25 @@ function ch4_plugin_display_project_details()
 function ch4_plugin_edit_project_form()
 {
     $project_series = sanitize_text_field($_GET['series']);
-    $project_details = get_project_details_by_series($project_series);
+    $project_details = (new ProjectService())->get_project_details_by_series($project_series);
 
     if ($project_details) {
 ?>
 <h3>Editeaza Proiect</h3>
 <div class="col-6-responsive">
     <form method="post" class="form-ETD">
-        <input type="hidden" name="project_series" value="<?php echo esc_attr($project_details->series); ?>">
+        <input type="hidden" name="project_series" value="<?php echo esc_attr($project_details->series); ?>"
+            maxlength="191">
         <label for="project_name">Numele proiectului:</label>
-        <input type="text" name="project_name" value="<?php echo esc_attr($project_details->name); ?>">
+        <input type="text" name="project_name" value="<?php echo esc_attr($project_details->name); ?>" maxlength="191">
         <label for="project_status">Statusul proiectului:</label>
-        <input type="text" name="project_status" value="<?php echo esc_attr($project_details->status); ?>">
+        <input type="text" name="project_status" value="<?php echo esc_attr($project_details->status); ?>"
+            maxlength="191">
         <label for="project_details">Descrierea proiectului:</label>
         <textarea name="project_details" id="" cols="30" rows="10">
     <?php echo esc_attr($project_details->details); ?>
     </textarea>
-        <input type="submit" name="update_project" value="Update">
+        <input type="submit" name="update_project" value="Update" class="button button-primary">
     </form>
 </div>
 <?php
@@ -51,7 +53,7 @@ function ch4_admin()
     }
     $default_tab = null;
     $tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
-    ch4_plugin_handle_project_edit();
+    (new ProjectService())->ch4_plugin_handle_project_edit();
     if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['series'])) {
 
         ch4_plugin_edit_project_form();
@@ -82,11 +84,13 @@ function ch4_plugin_project_search_form()
 {
     ob_start();
     ?>
-<form action="" method="post">
-    <label for="project_series">Serie Proiect:</label>
-    <input type="text" name="project_series" id="project_series">
-    <input type="submit" value="Cauta">
-</form>
+<div class="flex-container-ETD">
+    <form action="" method="post" class="form-ETD">
+        <label for="project_series">Serie Proiect:</label>
+        <input type="text" name="project_series" id="project_series" maxlength="191">
+        <input type="submit" value="Cauta">
+    </form>
+</div>
 <?php
     ch4_plugin_display_project_details();
     return ob_get_clean();
@@ -94,6 +98,7 @@ function ch4_plugin_project_search_form()
 
 function backoffice_main_page()
 {
+    $nonce = wp_create_nonce('wp_rest');
 ?>
 <div class="wrap">
     <hr>
@@ -108,14 +113,14 @@ function backoffice_main_page()
         </thead>
         <tbody>
             <?php
-                $projects = get_projects_from_database();
+                $projects = (new ProjectService())->get_projects_from_database();
 
                 foreach ($projects as $project) {
                     echo '<tr>';
                     echo '<td>' . esc_html($project->series) . '</td>';
                     echo '<td>' . esc_html($project->name) . '</td>';
                     echo '<td>' . esc_html($project->status) . '</td>';
-                    echo '<td><a href="?page=ch4&action=edit&series=' . esc_attr($project->series) . '">Editeaza</a>, <a href="#" class="deleteProject" data-id="' . esc_attr($project->series) . '">Sterge</a></td>'; // Edit link
+                    echo '<td><a href="?page=ch4&action=edit&series=' . esc_attr($project->series) . '">Editeaza</a>, <a href="#" class="deleteProject" data-nonce="' . $nonce . '" data-id="' . esc_attr($project->series) . '">Sterge</a></td>'; // Edit link
                     echo '</tr>';
                 }
                 ?>
@@ -140,11 +145,11 @@ function backoffice_main_page()
 function addProjectsPage()
 {
     if (isset($_POST['upload_csv'])) {
-        handle_csv_upload();
+        (new ProjectService())->handle_csv_upload();
     } elseif (isset($_POST['update_project'])) {
-        ch4_plugin_handle_project_edit();
+        (new ProjectService())->ch4_plugin_handle_project_edit();
     } elseif (isset($_POST['addSingleProject'])) {
-        handleFormProject();
+        (new ProjectService())->handleFormProject();
     }
 ?>
 <div class="flex-container-ETD">
@@ -156,28 +161,28 @@ function addProjectsPage()
                 Sau
                 <input type="file" name="csv_file" id="ch4Files" accept=".csv,.xls,.xlsx" required>
             </label>
-            <input type="submit" name="upload_csv" value="Trimite">
+            <input type="submit" name="upload_csv" value="Trimite" class="button button-primary">
 
 
         </form>
     </div>
     <div class="col-6-responsive">
         <h3>
-            Introdu Date Manual
+            Introduce Date Manual
         </h3>
         <form method="post" enctype="multipart/form-data" class="form-ETD ">
             <label for="series">Serie</label>
-            <input type="text" name="series" id="series">
+            <input type="text" name="series" id="series" maxlength="191">
             <br>
             <label for="name">Nume Proiect</label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" maxlength="191">
             <br>
             <label for="status">Status</label>
-            <input type="text" name="status" id="status">
+            <input type="text" name="status" id="status" maxlength="191">
             <br>
             <label for="details">Descriere</label>
             <textarea name="details" id="" cols="30" rows="10"></textarea>
-            <input type="submit" name="addSingleProject" value="Incarca">
+            <input type="submit" name="addSingleProject" value="Incarca" class="button button-primary">
         </form>
     </div>
 </div>
