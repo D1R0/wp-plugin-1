@@ -35,9 +35,6 @@ function ch4_plugin_admin_menu()
 
 register_activation_hook(__FILE__, 'ch4_plugin_activate');
 wp_enqueue_script('wp-api');
-if (is_admin()) {
-    add_action('admin_enqueue_scripts', 'ch4_plugin_enqueue_styles_scripts');
-}
 add_action('admin_menu', 'ch4_plugin_admin_menu');
 add_action('wp_enqueue_scripts', 'ch4_plugin_enqueue_styles_scripts');
 add_shortcode('project_search_form', 'ch4_plugin_project_search_form');
