@@ -115,3 +115,11 @@
     margin-bottom: 0;
     margin-left: auto;
 }
+
+.responseETD {
+    padding: 1.25rem;
+}
+
+.responseETD .reponseHeaderETD {
+    margin-bottom: 1.75rem;
+}

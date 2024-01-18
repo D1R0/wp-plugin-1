@@ -16,7 +16,7 @@ function responseSearch($project_details)
 {
 ?>
 
-<div>
+<div class="responseETD">
     <div class="reponseHeaderETD">
         <span><i>Serie:<?php echo $project_details->series ?></i></span>
     </div>
