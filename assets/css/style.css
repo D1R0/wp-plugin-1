@@ -101,3 +101,17 @@
 .form-upload-ETD input[type=file]::file-selector-button:hover {
     background: #cc9a03;
 }
+
+.preContentETD {
+    display: flex;
+    align-items: end;
+}
+
+.preContentETD h3 {
+    margin-bottom: 0;
+}
+
+.preContentETD p {
+    margin-bottom: 0;
+    margin-left: auto;
+}

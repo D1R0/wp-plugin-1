@@ -6,24 +6,40 @@ function ch4_plugin_display_project_details()
         $project_series = sanitize_text_field($_POST['project_series']);
         $project_details = (new ProjectService())->get_project_details_by_series($project_series);
         if ($project_details) {
-            echo '<h4>Detalii Proiect</h4>';
-            echo '<p><b>Serie</b>: ' . esc_html($project_details->series) . '</p>';
-            echo '<p><b>Nume</b>: ' . esc_html($project_details->name) . '</p>';
-            echo '<p><b>Status</b>: ' . esc_html($project_details->status) . '</p>';
-            echo '<p><b>Detalii</b>: ' . esc_html($project_details->details) . '</p>';
+            echo responseSearch($project_details);
         } else {
             echo '<p>Proiectul cu seria ' . esc_html($project_series) . ' nu a fost gasit</p>';
         }
     }
 }
+function responseSearch($project_details)
+{
+?>
 
+<div>
+    <div class="reponseHeaderETD">
+        <span><i>Serie:<?php echo $project_details->series ?></i></span>
+    </div>
+    <div class="responseContentETD">
+        <div class="preContentETD">
+            <h3><b><?php echo $project_details->name ?></b></h3>
+            <p><b>Status: </b><?php echo $project_details->status ?> </p>
+        </div>
+        <hr>
+        <p><b>Descriere:</b></p>
+        <p><?php echo $project_details->details ?></p>
+
+    </div>
+</div>
+<?php
+}
 function ch4_plugin_edit_project_form()
 {
     $project_series = sanitize_text_field($_GET['series']);
     $project_details = (new ProjectService())->get_project_details_by_series($project_series);
 
     if ($project_details) {
-?>
+    ?>
 <h3>Editeaza Proiect</h3>
 <div class="col-6-responsive">
     <form method="post" class="form-ETD">

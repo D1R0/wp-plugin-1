@@ -20,9 +20,10 @@ function updateDatabase()
             details LONGTEXT,
             PRIMARY KEY (series)
         ) $charset_collate;";
+        $result = $wpdb->get_results($sql);
 
-        // Execute the SQL query
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
+        // // Execute the SQL query
+        // require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        // dbDelta($sql);
     }
 }
