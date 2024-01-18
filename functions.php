@@ -32,9 +32,13 @@ function ch4_plugin_admin_menu()
 {
     add_menu_page('Proiecte', 'CH4', 'manage_options', 'ch4', 'ch4_admin');
 }
+function ch4_plugin_enqueue_scripts()
+{
+    wp_enqueue_script('wp-api');
+}
 
+add_action('wp_enqueue_scripts', 'ch4_plugin_enqueue_scripts');
 register_activation_hook(__FILE__, 'ch4_plugin_activate');
-wp_enqueue_script('wp-api');
 add_action('admin_menu', 'ch4_plugin_admin_menu');
 add_action('wp_enqueue_scripts', 'ch4_plugin_enqueue_styles_scripts');
 add_shortcode('project_search_form', 'ch4_plugin_project_search_form');
