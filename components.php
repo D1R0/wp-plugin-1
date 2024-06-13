@@ -18,11 +18,11 @@ function responseSearch($project_details)
 
     <div class="responseETD">
         <div class="reponseHeaderETD">
-            <span><i>Serie:<?php echo $project_details->series ?></i></span>
+            <span>Serie:<i><?php echo $project_details->series ?></i></span>
         </div>
         <div class="responseContentETD">
             <div class="preContentETD">
-                <h3><b><?php echo $project_details->name ?></b></h3>
+                <h5><b><?php echo $project_details->name ?></b></h5>
                 <p><b>Status: </b><?php echo $project_details->status ?> </p>
             </div>
             <hr>
