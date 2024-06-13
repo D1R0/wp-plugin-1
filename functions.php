@@ -48,7 +48,6 @@ function initRestApi()
     Rest::register();
 }
 add_action('rest_api_init', 'initRestApi');
-require_once plugin_dir_path(__FILE__) . 'lib/phpspreadsheet/vendor/autoload.php';
 require_once plugin_dir_path(__FILE__) . 'Services/ProjectService.php';
 require_once plugin_dir_path(__FILE__) . 'setup.php';
 require_once plugin_dir_path(__FILE__) . 'components.php';

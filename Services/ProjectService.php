@@ -1,8 +1,5 @@
 <?php
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ProjectService
 {
@@ -138,15 +135,16 @@ class ProjectService
                     if (move_uploaded_file($file['tmp_name'], $upload_path)) {
                         if ($file_extension == 'csv') {
                             $this->load_projects_from_csv($upload_path);
-                        } else {
-                            $this->load_projects_from_excel($upload_path);
                         }
+                        //  else {
+                        //     $this->load_projects_from_excel($upload_path);
+                        // }
                         echo '<p style="color: green;">Fișierul a fost încărcat cu succes.</p>';
                     } else {
                         echo '<p style="color: red;">A apărut o eroare, contactează suportul official@eltand.com</p>';
                     }
                 } else {
-                    echo '<p style="color: red;">Formatul de fișier nu este suportat. Sunt acceptate doar CSV, XLS și XLSX.</p>';
+                    echo '<p style="color: red;">Formatul de fișier nu este suportat. Sunt acceptate doar CSV</p>';
                 }
             }
         }
