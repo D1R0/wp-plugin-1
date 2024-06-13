@@ -1,5 +1,9 @@
 <?php
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 class ProjectService
 {
 
@@ -72,7 +76,7 @@ class ProjectService
         $table_name = $wpdb->prefix . 'ch4_projects';
 
         if (file_exists($excel_file_path)) {
-            $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($excel_file_path);
+            $spreadsheet = IOFactory::load($excel_file_path);
             $worksheet = $spreadsheet->getActiveSheet();
 
             foreach ($worksheet->getRowIterator() as $row) {

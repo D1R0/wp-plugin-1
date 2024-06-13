@@ -6,10 +6,10 @@ Version: 1.0
 Author: Eltand
 Author URL: https://www.eltand.com/
 */
-
 if (!defined('WPINC')) {
     die;
 }
+
 function ch4_plugin_enqueue_styles_scripts()
 {
     wp_enqueue_style('ch4-admin-style', plugins_url('assets/css/style.css', __FILE__));
@@ -48,8 +48,7 @@ function initRestApi()
     Rest::register();
 }
 add_action('rest_api_init', 'initRestApi');
-
-require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
+require_once plugin_dir_path(__FILE__) . 'lib/phpspreadsheet/vendor/autoload.php';
 require_once plugin_dir_path(__FILE__) . 'Services/ProjectService.php';
 require_once plugin_dir_path(__FILE__) . 'setup.php';
 require_once plugin_dir_path(__FILE__) . 'components.php';
