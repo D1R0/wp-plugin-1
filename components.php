@@ -101,8 +101,8 @@ function ch4_plugin_project_search_form()
     <div class="flex-container-ETD">
         <form action="" method="post" class="form-ETD">
             <label for="project_series">Serie Proiect:</label>
-            <input type="text" name="project_series" id="project_series" maxlength="191">
-            <input type="submit" value="Cauta">
+            <input type="text" name="project_series" id="project_series" maxlength="191" placeholder="Introdu aici seria">
+            <input type="submit" value="Cauta" class="btn-actura_etd">
         </form>
     </div>
 <?php

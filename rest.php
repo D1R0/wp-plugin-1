@@ -4,7 +4,7 @@ class Rest
 {
     public static function register()
     {
-        register_rest_route('ch4/v1', '/delete-project/(?P<series>[a-zA-Z0-9-]+)', array(
+        register_rest_route('ch4/v1', '/delete-project/(?P<series>[a-zA-Z0-9-_]+)', array(
             'methods'  => 'DELETE',
             'callback' => [new Rest, 'delete_project_api'],
             'permission_callback' => function () {

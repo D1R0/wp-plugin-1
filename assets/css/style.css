@@ -123,3 +123,20 @@
 .responseETD .reponseHeaderETD {
     margin-bottom: 1.75rem;
 }
+
+.btn-actura_etd {
+    font-weight: 500 !important;
+    font-family: "Manrope", Sans-serif !important;
+    font-size: 15px !important;
+    border: none !important;
+    padding: 8px 30px 8px 30px !important;
+    height: 60px;
+    border-radius: 0;
+    background-color: #FFBF00 !important;
+    color: #1a1a1a !important;
+    transition: 0.5s;
+}
+
+.btn-actura_etd:hover {
+    background-color: #ffcf3f !important;
+}
